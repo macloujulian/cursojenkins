@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'PERSONA', defaultValue: 'Julian', description: 'A quien debo saludar?')
+
+        booleanParam(name: 'FLAG', defaultValue: true, description: 'FLAG Verdadera?')
+
+        choice(name: 'Eleccion', choices: ['A', 'B', 'C'], description: 'Elegir una opción')
+    }
+    stages {
+        stage('Clase de Parametros') {
+            steps {
+                echo "Hola, como estas ${params.PERSONA}"
+
+                echo "FLAG: ${params.FLAG}"
+
+                echo "Eleccion: ${params.Eleccion}"
+            }
+        }
+    }
+}
+
+
+pipeline {
+    agent any
+    stages {
+        stage('Etapa 1') { 
+            steps {
+                echo "Arranca la Etapa 1" 
+		     
+		            sh 'sleep 10'
+		        }
+	      }
+        stage('Etapa 2') {
+            input {
+                message "Continuar el proyecto?"
+                ok "Si, continuar por favor."
+                parameters {
+                    string(name: 'PERSONA', defaultValue: 'Julian', description: 'A quien debo saludar?')
+                }
+            }
+            steps {
+                echo "Hola, ${PERSONA}, un placer conocerte."
+            }
+        }
+    }
+}
