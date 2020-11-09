@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+    stages {
+        stage('Deploy') {
+            steps {
+                retry(3) {
+                    sh 'echo "Arranca el deploy"'
+                }
+
+                timeout(time: 10, unit: 'SECONDS') {
+                    sh 'sleep 15'
+                }
+            }
+        }
+    }
+}
+
+
+
+pipeline {
+    agent any
+    stages {
+        stage('Deploy') {
+            steps {
+                timeout(time: 5, unit: 'SECONDS') {
+                    retry(3) {
+                        sh 'hola'
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+pipeline {
+    agent any
+    stages {
+        stage('Secuencial') {
+		        options {
+                timeout(time: 15, unit: 'SECONDS')
+		}
+            stages {
+                stage('Secuencial 1') {
+                    steps {
+                        echo "Secuencial: Parte 1"
+                    }
+                }
+                stage('Secuencial 2') {
+                    steps {
+                        sh 'sleep 16'
+                    }
+                }
+            }
+        }
+    }
+}
