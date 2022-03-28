@@ -20,7 +20,7 @@ node {
             rtGradle.usesPlugin = true // El plugin ya está definifo en el build script
         }
         stage('Ejecutar Gradle') {
-            rtGradle.run rootDir: "artifactory/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish', buildInfo: buildInfo
+            rtGradle.run rootDir: "artifactory/", tasks: 'clean artifactoryPublish', buildInfo: buildInfo
         }
         stage('Publicar buildInfo') {
             server.publishBuildInfo buildInfo
