@@ -1,4 +1,3 @@
-
 version: '3'
 services:
   jenkins:
@@ -22,7 +21,7 @@ services:
       POSTGRES_USER: sonar
       POSTGRES_PASSWORD: sonarpasswd
     volumes:
-      - /var/postgres-data:/var/lib/postgresql/data
+      - $PWD/postgres-data:/var/lib/postgresql/data
   sonarqube:
     image: sonarqube:lts
     ports:
