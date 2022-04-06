@@ -6,13 +6,14 @@ services:
     build:
       context: dockerjenkins
     ports:
-      - "8080:8080"
-      - "50000:50000"
-    networks:
-      - net
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
     volumes:
       - $PWD/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - net
   postgres:
     image: postgres:14
     networks:
@@ -25,8 +26,8 @@ services:
   sonarqube:
     image: sonarqube:lts
     ports:
-      - "9000:9000"
-      - "9092:9092"
+      - 9000:9000
+      - 9092:9092
     networks:
       - net
     environment:
