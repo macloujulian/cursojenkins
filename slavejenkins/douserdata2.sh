@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # install dependencies
+apt-get install net-tools
+
 apt-get update
 
 apt-get install -y \
