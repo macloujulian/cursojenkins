@@ -29,6 +29,7 @@ systemctl enable containerd.service
 # docker agent setup
 
 docker run -d --rm --name=agent1 -p 2222:22 \
+-e "JENKINS_AGENT_SSH_PUBKEY=~/.ssh/jenkins_agent_key2.pub" \
 jenkins/ssh-agent:alpine
 
 # docker container update
