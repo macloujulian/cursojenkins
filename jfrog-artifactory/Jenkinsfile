@@ -3,7 +3,7 @@ node {
     def rtGradle = Artifactory.newGradleBuild()
     def buildInfo = Artifactory.newBuildInfo()
     
-    stage 'Complicacion/Build'
+    stage 'Compilacion/Build'
         git branch: 'main', url: 'https://github.com/macloujulian/gs-gradle.git'
 
     stage 'Configuracion Artifactory'
