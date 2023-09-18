@@ -9,6 +9,8 @@ services:
       - 8080:8080
       - 50000:50000
     container_name: jenkins
+    privileged: true
+    user: root
     volumes:
       - $PWD/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
@@ -25,6 +27,7 @@ services:
       - $PWD/postgres-data:/var/lib/postgresql/data
   sonarqube:
     image: sonarqube:lts
+    platform: linux/amd64
     ports:
       - 9000:9000
       - 9092:9092
